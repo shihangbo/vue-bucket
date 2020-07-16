@@ -20,3 +20,9 @@ vue family bucket
 #### 1.install方法
 #### 2.Store类
 #### 3.todo...
+
+## Vue服务端渲染
+#### 1.todo...
+
+## Vue面试题
+#### 1.watch方法是如何实现的？
