@@ -3,7 +3,7 @@ vue family bucket
 
 
 ## vue
-### 1.MVVM 数据劫持
+#### 1.MVVM 数据劫持
 ### 2.compiler 模版编译
 ### 3.MVVM 双向绑定
 ### 4.nextTick 批量更新
