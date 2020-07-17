@@ -1,0 +1,29 @@
+{
+  "name": "vue-bucket",
+  "version": "1.0.0",
+  "description": "vue family bucket",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "rollup -c",
+    "start": "cross-env ENV=development rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shihangbo/vue-bucket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shihangbo/vue-bucket/issues"
+  },
+  "homepage": "https://github.com/shihangbo/vue-bucket#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "cross-env": "^7.0.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-serve": "^1.0.1"
+  }
+}
