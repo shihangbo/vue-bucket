@@ -3,14 +3,35 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Document</title>
+    <title>Vue-bucket</title>
   </head>
   <body>
+    <div id="app" style="color:red;">hello
+      <p>111{{name}}222</p>
+      <p>{{age}}</p>
+    </div>
     <script src="/dist/umd/vue.js"></script>
     <script>
       let vm = new Vue({
-        el: '#app'
+        el: '#app',
+        data() {
+          return {
+            name: 'watson',
+            age: 17,
+            // address: {
+            //   city: 'hz',
+            //   province: 'zj'
+            // },
+            // students: [
+            //   {name:'xm',age:18},
+            //   {name:'xw',age:16}
+            // ]
+          }
+        },
       })
+
+      // vm._data.students.push({name:'hb',age:17})
+      console.log(vm)
     </script>
   </body>
 </html>
