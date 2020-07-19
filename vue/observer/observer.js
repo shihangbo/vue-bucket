@@ -6,6 +6,8 @@ export function defineReactive(data, key, value) {
   observer(value) // 1.深度检测，data里面的属性还是对象的时候，再进行数据劫持
   // let dep = new Dep()
   Object.defineProperty(data, key, {
+    configurable:true,
+    enumerable:true,
     get: function() {
       console.log('获取数据')
       // 三、依赖收集 class Dep{} 数据发布者

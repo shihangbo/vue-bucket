@@ -25,53 +25,54 @@ const conditionalComment = /^<!\[/
 const defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g
 const regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g
 
-let root = null  // ast语法树树根
-let currentParent = null // 标识当前父节点
-let stack = [] // 当前开始标签的数组，匹配到开始标签推入栈中，匹配到结束标签且与栈顶一致，将栈顶标签弹出
-const ELEMENT_TYPE = 1
-const TEXT_TYPE = 3
-
-function createASTElement(tagName,attrs) {
-  return {
-    tag: tagName,
-    type: ELEMENT_TYPE,
-    children: [],
-    attrs,
-    parent: null
-  }
-}
-function createASTText(text) {
-  return {
-    text,
-    type: TEXT_TYPE,
-  }
-}
-
-function start(tagName,attrs) {
-  let element = createASTElement(tagName,attrs)
-  if (!root) {
-    root = element
-  }
-  currentParent = element // 标记当前元素
-  stack.push(element)
-}
-function chars(text) {
-  text = text.replace(/\s/g,'')
-  if (text) {
-    currentParent.children.push(createASTText(text))
-  }
-}
-// <div><p>  [div]
-function end(tagName) {
-  let element = stack.pop()
-  // 标识当前标签p是属于div到儿子
-  currentParent = stack[stack.length-1]
-  if (currentParent) {
-    element.parent = currentParent
-    currentParent.children.push(element)
-  }
-}
 export function parseHTML(html) {
+  let root = null  // ast语法树树根
+  let currentParent = null // 标识当前父节点
+  let stack = [] // 当前开始标签的数组，匹配到开始标签推入栈中，匹配到结束标签且与栈顶一致，将栈顶标签弹出
+  const ELEMENT_TYPE = 1
+  const TEXT_TYPE = 3
+
+  function createASTElement(tagName,attrs) {
+    return {
+      tag: tagName,
+      type: ELEMENT_TYPE,
+      children: [],
+      attrs,
+      parent: null
+    }
+  }
+  function createASTText(text) {
+    return {
+      text,
+      type: TEXT_TYPE,
+    }
+  }
+
+  function start(tagName,attrs) {
+    let element = createASTElement(tagName,attrs)
+    if (!root) {
+      root = element
+    }
+    currentParent = element // 标记当前元素
+    stack.push(element)
+  }
+  function chars(text) {
+    text = text.replace(/\s/g,'')
+    if (text) {
+      currentParent.children.push(createASTText(text))
+    }
+  }
+  // <div><p>  [div]
+  function end(tagName) {
+    let element = stack.pop()
+    // 标识当前标签p是属于div到儿子
+    currentParent = stack[stack.length-1]
+    if (currentParent) {
+      element.parent = currentParent
+      currentParent.children.push(element)
+    }
+  }
+  
   while(html) {
     let textEnd = html.indexOf('<')
     if (textEnd == 0) { // 原生标签 <div>

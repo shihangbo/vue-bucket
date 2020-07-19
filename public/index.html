@@ -9,6 +9,7 @@
     <div id="app" style="color:red;">hello
       <p>111{{name}}222</p>
       <p>{{age}}</p>
+      <p>{{address}}</p>
     </div>
     <script src="/dist/umd/vue.js"></script>
     <script>
@@ -18,15 +19,33 @@
           return {
             name: 'watson',
             age: 17,
-            // address: {
-            //   city: 'hz',
-            //   province: 'zj'
-            // },
+            address: {
+              city: 'hz',
+              province: 'zj'
+            },
             // students: [
             //   {name:'xm',age:18},
             //   {name:'xw',age:16}
             // ]
           }
+        },
+        beforeCreate() {
+          console.log('生命周期: beforeCreate user', this.$el)
+        },
+        created() {
+          console.log('生命周期: created user', this.$el)
+        },
+        beforeMount() {
+          console.log('生命周期: beforeMount user', this.$el)
+        },
+        mounted() {
+          console.log('生命周期: mounted user', this.$el)
+        },
+        beforeUpdate() {
+          console.log('生命周期: beforeUpdate user', this.$el)
+        },
+        updated() {
+          console.log('生命周期: updated user', this.$el)
         },
       })
 

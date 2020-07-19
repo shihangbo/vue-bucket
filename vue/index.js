@@ -1,6 +1,7 @@
 import { initMixin } from './init'
 import {renderMixin} from './render'
 import {lifecycleMixin} from './lifecycle'
+import {initGlobelAPI} from './initGlobelAPI/index'
 
 // vue核心代码
 function Vue(options) {
@@ -11,6 +12,10 @@ function Vue(options) {
 initMixin(Vue)
 renderMixin(Vue)
 lifecycleMixin(Vue)
+
+
+//初始化全局api，Vue到静态方法
+initGlobelAPI(Vue)
 
 export default Vue
 
@@ -37,4 +42,13 @@ export default Vue
         // 3.1 判断更新还是渲染 oldVnode是否存在nodeType属性
         // 3.2 根据虚拟节点创建真实节点createElm(vnode)，插入到当前#app节点后面insertBefore，然后移除#app节点removeChild
         // 3.3 备注 createElm方法递归到创建真实dom，vnode对象上新增el属性映射真实dom
-        // 3.4 更新元素属性 
+        // 3.4 更新元素属性
+// 四、生命周期的合并策略: [beforeCreate,beforeCreate]
+    // initGlobelAPI 全局api 定义在 Vue.options ={} 上
+    // Vue.mixin() 方法 会将用户定义的方法合并到 Vue.options对象同名的属性上，用数组进行维护，使用发布订阅模式 [beforeCreate,beforeCreate]
+    // mergeOptions方法实现两个对象的合并:
+        // 1.默认的属性合并: 两个对象的合并，遍历两个对象进行合并
+        // 2.特殊属性:
+            // 2.1 生命周期策略: LIFECYCLE_HOOKS
+            // 2.2 收集依赖(订阅) strats[hook]
+            // 2.3 发布执行 callHook(vm,hook)

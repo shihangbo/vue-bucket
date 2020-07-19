@@ -1,15 +1,20 @@
 import {initState} from './state.js'
 import {compilerToFunction} from './compiler/index.js'
-import {mountComponent} from './lifecycle'
-
+import {mountComponent, callHook} from './lifecycle'
+import {mergeOptions} from './util/index'
 export function initMixin(Vue) {
   // 初始化流程
   Vue.prototype._init = function(options) {
     const vm = this
-    vm.$options = options
+
+    // 实例继承Vue的options属性
+    vm.$options = mergeOptions(vm.constructor.options, options)
+    console.log('Vue.mixin合并策略(vm实例属性合并完成): ',  vm.$options)
+    
+    callHook(vm, 'beforeCreate')
     // 一、MVVM原理 数据劫持 Object.defineProperty() - 数据变化驱动视图更新
     initState(vm)
-
+    callHook(vm, 'created')
 
 
     // 二、模版编译
