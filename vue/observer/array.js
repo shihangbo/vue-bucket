@@ -21,7 +21,8 @@ methods.forEach(method => {
   arrayMethods[method] = function(...args) {
     let r = oldArrayProtoMethods[method].apply(this, args)
     // 函数劫持
-    let inserted;
+    let inserted
+    let ob = this.__ob__
     switch (method) {
       case 'push':
       case 'unshift':
@@ -33,7 +34,10 @@ methods.forEach(method => {
       default:
         break;
     }
-    if(inserted) this.__ob__.observerArray(inserted);
+    if(inserted) ob.observerArray(inserted);
+
+    // 数组的数据变化，驱动视图更新
+    ob.dep.notify()
 
     return r
   }

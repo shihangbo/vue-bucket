@@ -19,7 +19,7 @@ class Watcher{
     popTarget(this)
   }
 
-  addSub(dep) {
+  addDep(dep) {
     let id = dep.id
     if (!this.depsId.has(id)) {
       this.depsId.add(id)

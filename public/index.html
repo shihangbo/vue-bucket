@@ -8,8 +8,6 @@
   <body>
     <div id="app" style="color:red;">hello
       <p>111{{name}}222</p>
-      <p>{{age}}</p>
-      <p>{{address}}</p>
     </div>
     <script src="/dist/umd/vue.js"></script>
     <script>
@@ -17,7 +15,7 @@
         el: '#app',
         data() {
           return {
-            name: 'watson',
+            name: [[1111],2,3],
             age: 17,
             address: {
               city: 'hz',
@@ -52,10 +50,8 @@
       // vm._data.students.push({name:'hb',age:17})
       console.log(vm)
       setTimeout(function() {
-        vm.age = 1000
-        vm.age = 1001
-        vm.age = 1002
-      },3000)
+        vm.name[0].push(4,5,6)
+      }, 2000)
     </script>
   </body>
 </html>

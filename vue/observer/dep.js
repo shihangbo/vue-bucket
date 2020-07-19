@@ -12,7 +12,7 @@ class Dep{
   }
   depend() {
     if (Dep.target) {
-      Dep.target.addSub(this)
+      Dep.target.addDep(this)
     }
   }
 }
