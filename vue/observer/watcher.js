@@ -1,4 +1,5 @@
 import {pushTarget,popTarget} from './dep.js'
+import {queueWatcher} from './schedular'
 let id = 0
 class Watcher{
   constructor(vm,exprOrFn,callback,options) {
@@ -29,8 +30,19 @@ class Watcher{
   }
 
   update() {
+    queueWatcher(this)
+  }
+
+  run() {
     this.get()
+    // let oldValue = this.value
+    // let newValue = this.get()
+    // this.value = newValue
+    // if (this.user) { // 用户watcher处理
+    //   this.cb.call(this.vm,newValue,oldValue)
+    // }
   }
 }
+
 
 export default Watcher

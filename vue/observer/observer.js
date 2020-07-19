@@ -23,7 +23,7 @@ export function defineReactive(data, key, value) {
           }
         }
       }
-      console.log('获取数据: ', key, '收集依赖Dep: ', dep)
+      // console.log('获取数据: ', key, '收集依赖Dep: ', dep)
       return value
     },
     set: function (newValue) {
@@ -31,7 +31,7 @@ export function defineReactive(data, key, value) {
       observer(newValue)  // 2.用户赋值的时候如果是一个对象，也需要进行数据劫持
       value = newValue
       dep.notify()
-      console.log('设置数据，如果新值是对象也应该进行监控')
+      // console.log('设置数据，如果新值是对象也应该进行监控')
     }
   })
 }

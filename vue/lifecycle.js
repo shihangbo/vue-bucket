@@ -7,9 +7,10 @@ export function mountComponent(vm,el) {
 
   // 挂载前
   callHook(vm, 'beforeMount')
-  // 渲染页面
+  // 渲染页面 - notify 调的 update方法即updateComponent
   let updateComponent = () => {
     vm._update(vm._render())
+    console.log('页面更新 update - updateComponent')
   }
   // 渲染Watcher
   new Watcher(vm, updateComponent, ()=>{}, true) //渲染 watcher

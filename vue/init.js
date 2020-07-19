@@ -2,6 +2,7 @@ import {initState} from './state.js'
 import {compilerToFunction} from './compiler/index.js'
 import {mountComponent, callHook} from './lifecycle'
 import {mergeOptions} from './util/index'
+import {nextTick} from './util/next-tick'
 export function initMixin(Vue) {
   // 初始化流程
   Vue.prototype._init = function(options) {
@@ -45,6 +46,8 @@ export function initMixin(Vue) {
     // }
     // new Watcher(vm, updateComponent, ()=>{}, true) //渲染 watcher
   }
+
+  Vue.prototype.$nextTick = nextTick
 }
 
 function query(el) {

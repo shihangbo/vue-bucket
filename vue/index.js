@@ -55,3 +55,6 @@ export default Vue
 // MVVM原理 2.数据变化驱动视图更新，即对象的【依赖收集】-Dep类实现，（数据变化可以自动执行渲染watcher）
     // 1.对象：数据驱动视图更新vue使用观察者模式 Dep类的实现
     // 2.数组：数据驱动视图更新，单独的处理，递归处理数组的嵌套
+// 异步更新 在数据变化的时候 dep.notify() -> watcher.update() -> queueWatcher(this)
+    // 1.批量更新处理 queueWatcher方法，setTimeout
+    // 2.nextTick 的实现，1.根据watcher id对watcher进行过滤；2.延迟执行: vue使用策略 - 微任务，宏任务 - Promise/MutationObserver/setImmediate/setTimeout

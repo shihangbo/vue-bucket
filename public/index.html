@@ -49,9 +49,12 @@
 
       // vm._data.students.push({name:'hb',age:17})
       console.log(vm)
-      setTimeout(function() {
-        vm.name[0].push(4,5,6)
-      }, 2000)
+      vm.name[0].push(4)
+      vm.name[0].push(5)
+      vm.name[0].push(6)
+      vm.$nextTick(function() {
+        console.log(vm.name)
+      })
     </script>
   </body>
 </html>
