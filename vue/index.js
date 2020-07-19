@@ -20,7 +20,7 @@ initGlobelAPI(Vue)
 export default Vue
 
 
-// 一、MVVM原理 数据劫持 - 数据变化驱动视图更新 Object.defineProperty() 给属性增加get方法和set方法
+// 一、MVVM原理 1.数据劫持 - 数据变化驱动视图更新 Object.defineProperty() 给属性增加get方法和set方法
     // 递归解析data中的属性，增加get和set，性能查 - vue3使用proxy改进，不需要递归，也不需要增加get和set方法
     // 对象劫持：深度递归，性能差
     // 数组劫持：1.不会对索引进行观测；2.重写数据方法(7个: push/shift/unshift/pop/reverse/sort/splice)
@@ -52,3 +52,5 @@ export default Vue
             // 2.1 生命周期策略: LIFECYCLE_HOOKS
             // 2.2 收集依赖(订阅) strats[hook]
             // 2.3 发布执行 callHook(vm,hook)
+// MVVM原理 2.数据变化驱动视图更新，即对象的【依赖收集】-Dep类实现，（数据变化可以自动执行渲染watcher）
+    // 数据驱动视图更新vue使用观察者模式 Dep类的实现

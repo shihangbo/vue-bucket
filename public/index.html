@@ -29,28 +29,33 @@
             // ]
           }
         },
-        beforeCreate() {
-          console.log('生命周期: beforeCreate user', this.$el)
-        },
-        created() {
-          console.log('生命周期: created user', this.$el)
-        },
-        beforeMount() {
-          console.log('生命周期: beforeMount user', this.$el)
-        },
-        mounted() {
-          console.log('生命周期: mounted user', this.$el)
-        },
-        beforeUpdate() {
-          console.log('生命周期: beforeUpdate user', this.$el)
-        },
-        updated() {
-          console.log('生命周期: updated user', this.$el)
-        },
+        // beforeCreate() {
+        //   console.log('生命周期: beforeCreate user', this.$el)
+        // },
+        // created() {
+        //   console.log('生命周期: created user', this.$el)
+        // },
+        // beforeMount() {
+        //   console.log('生命周期: beforeMount user', this.$el)
+        // },
+        // mounted() {
+        //   console.log('生命周期: mounted user', this.$el)
+        // },
+        // beforeUpdate() {
+        //   console.log('生命周期: beforeUpdate user', this.$el)
+        // },
+        // updated() {
+        //   console.log('生命周期: updated user', this.$el)
+        // },
       })
 
       // vm._data.students.push({name:'hb',age:17})
       console.log(vm)
+      setTimeout(function() {
+        vm.age = 1000
+        vm.age = 1001
+        vm.age = 1002
+      },3000)
     </script>
   </body>
 </html>
