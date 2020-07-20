@@ -1,9 +1,23 @@
-import {mergeOptions} from '../util/index'
+import initMixin from './mixin'
+import initAssetRegisters from './assets'
+import {ASSETS_TYPE} from './const'
+import initExtend from './extend'
+
 export function initGlobelAPI(Vue) {
   Vue.options = {}
-  Vue.mixin = function(mixin) {
-    this.options = mergeOptions(this.options, mixin)
-  }
+  // 初始化 Vue.mixin
+  initMixin(Vue)
+  
+  // 初始化全局组件 指令 过滤器
+  ASSETS_TYPE.forEach(type => {
+    Vue.options[type+'s'] = {}
+  })
+
+  Vue.options._base = Vue
+  initExtend(Vue)
+  initAssetRegisters(Vue)
+
+
   // 测试 Vue.mixin
   Vue.mixin({
     a:1,

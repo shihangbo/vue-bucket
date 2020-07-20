@@ -52,9 +52,22 @@ export default Vue
             // 2.1 生命周期策略: LIFECYCLE_HOOKS
             // 2.2 收集依赖(订阅) strats[hook]
             // 2.3 发布执行 callHook(vm,hook)
-// MVVM原理 2.数据变化驱动视图更新，即对象的【依赖收集】-Dep类实现，（数据变化可以自动执行渲染watcher）
+// 五、MVVM原理 2.数据变化驱动视图更新，即对象的【依赖收集】-Dep类实现，（数据变化可以自动执行渲染watcher）
     // 1.对象：数据驱动视图更新vue使用观察者模式 Dep类的实现
     // 2.数组：数据驱动视图更新，单独的处理，递归处理数组的嵌套
-// 异步更新 在数据变化的时候 dep.notify() -> watcher.update() -> queueWatcher(this)
+// 六、异步更新 在数据变化的时候 dep.notify() -> watcher.update() -> queueWatcher(this)
     // 1.批量更新处理 queueWatcher方法，setTimeout
     // 2.nextTick 的实现，1.根据watcher id对watcher进行过滤；2.延迟执行: vue使用策略 - 微任务，宏任务 - Promise/MutationObserver/setImmediate/setTimeout
+// 七、组件系统 - 组件的定义
+    // 1.全局方法 initAssetRegisters 中对 全局组件/过滤器/指令进行定义；
+    // 2.initExtend 方法实现 Vue.extend: 返回组件的构造函数，通过new 这个构造函数生成实例，继承父类的属性和方法；
+    // 3.组件的合并策略: 同名的父子组件和属性应当同时存在
+    // 4.如何将组件标签和组件对应起来？createElement 方法中的 let Ctor = vm.$options.components[tag] // 找到组件的定义 构造函数
+// 八、组件系统 - 组件的渲染
+    // 1.patch.js的createElm创建标签的时候需要进行判断，不是string就是普通的html
+    // 2.组件的实例 放在 vnode.componentInstance属性上
+    // 3.组件渲染主动调用 child.$mount()，没有el属性，即patch方法没有oldVnode参数，渲染另外处理
+    // 4.全局组件和局部组件的区别：全局组件挂载到根上，局部组件挂载到对应到父类$el上；
+    // 5.总结：组件在使用时会调用Vue.extend方法，创建一个构造函数
+            //实例化自组件时，会将当前选项和用户定义选项合并，mergeOptions
+            //通过创建实例，内部会调用子类_init方法(子组件调用$mount方法)，创建子组件渲染watcher，将渲染后到结果放到对应到vm.#el上；

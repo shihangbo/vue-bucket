@@ -43,9 +43,23 @@ function mergeHook(parentVal,childVal) {
     return parentVal
   }
 }
+// 生命周期合并策略
 LIFECYCLE_HOOKS.forEach(hook => {
   strats[hook] = mergeHook
 })
+
+
+function mergeAssets(parentVal,childVal) {
+  const res = Object.create(parentVal) // res.__proto__ = parentVal
+  if (childVal) {
+    for(let key in childVal) {
+      res[key] = childVal[key]
+    }
+  }
+  return res
+}
+// 组件的合并策略
+strats['components'] = mergeAssets
 
 export function mergeOptions(parent, child) {
   let options = {}
@@ -71,4 +85,14 @@ export function mergeOptions(parent, child) {
     }
   }
   return options
+}
+
+
+export function isReservedTag(tagName) {
+  let str = 'div,p,span,input,button'
+  let obj = {}
+  str.split(',').forEach(tag => {
+    obj[tag]= true
+  })
+  return obj[tagName]
 }

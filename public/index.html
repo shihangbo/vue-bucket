@@ -8,9 +8,15 @@
   <body>
     <div id="app" style="color:red;">hello
       <p>111{{name}}222</p>
+      <my-component1></my-component1>
+      <my-component1></my-component1>
+      <my-component1></my-component1>
     </div>
     <script src="/dist/umd/vue.js"></script>
     <script>
+      Vue.component('my-component1', {
+        template: `<div>hello watson</div>`
+      })
       let vm = new Vue({
         el: '#app',
         data() {
@@ -27,6 +33,11 @@
             // ]
           }
         },
+        components: {
+          'my-component2': {
+            template: `<div>hello watson</div>`
+          }
+        }
         // beforeCreate() {
         //   console.log('生命周期: beforeCreate user', this.$el)
         // },
