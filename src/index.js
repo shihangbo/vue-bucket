@@ -1,7 +1,3 @@
 
-import Vue from '../vue/index.js'
-// import VueRouter from '../vue-router/index.js'
-// import Vuex from '../vuex/index.js'
-
-
+import Vue from '../source/vue/index.js'
 export default Vue

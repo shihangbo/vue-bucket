@@ -1,6 +1,16 @@
 # vue-bucket
 vue family bucket
 
+## 项目说明
+```
+1.vue源码项目，使用rollup打包
+启动命令: npm start
+编译命令: npm run build:dev
+
+2.vue + webpack + vue-router 源码项目，使用webpack配置打包
+启动命令: npm run dev
+编译命令: npm run build-webpack
+```
 
 ## vue
 #### 1.MVVM 数据劫持

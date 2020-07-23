@@ -2,6 +2,7 @@ import initMixin from './mixin'
 import initAssetRegisters from './assets'
 import {ASSETS_TYPE} from './const'
 import initExtend from './extend'
+import initUse from './use'
 
 export function initGlobelAPI(Vue) {
   Vue.options = {}
@@ -17,6 +18,7 @@ export function initGlobelAPI(Vue) {
   initExtend(Vue)
   initAssetRegisters(Vue)
 
+  initUse(Vue)
 
   // 测试 Vue.mixin
   Vue.mixin({

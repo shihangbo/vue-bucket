@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "rollup -c",
-    "start": "cross-env ENV=development rollup -c -w"
+    "start": "cross-env ENV=development rollup -c -w",
+    "dev": "webpack-dev-server",
+    "build-webpack": "webpack"
   },
   "repository": {
     "type": "git",
@@ -22,8 +24,14 @@
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "cross-env": "^7.0.2",
+    "html-webpack-plugin": "^4.3.0",
     "rollup": "^2.21.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-serve": "^1.0.1"
+    "rollup-plugin-serve": "^1.0.1",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

@@ -57,7 +57,7 @@ export function parseHTML(html) {
     stack.push(element)
   }
   function chars(text) {
-    text = text.replace(/\s/g,'')
+    // text = text.replace(/\s/g,'')
     if (text) {
       currentParent.children.push(createASTText(text))
     }

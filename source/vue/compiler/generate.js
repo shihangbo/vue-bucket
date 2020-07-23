@@ -23,7 +23,7 @@ function gen(node) {
     // _v('hello'+_s(name)+'world'))
     let tokens = []
     let match,index
-    let lastIndex = defaultTagRE.lastIndex = 0
+    let lastIndex = 0
     while(match = defaultTagRE.exec(text)) {
       index = match.index
       if (index>lastIndex) {
