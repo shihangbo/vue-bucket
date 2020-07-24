@@ -7,9 +7,9 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist2')
   },
-  resolve: {
-    modules: [path.resolve(__dirname, 'source'), path.resolve('node_modules')]
-  },
+  // resolve: {
+  //   modules: [path.resolve(__dirname, 'source'), path.resolve('node_modules')],
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './index.html')
@@ -18,7 +18,7 @@ module.exports = {
   ],
   module: {
     rules: [
-      {test:/\.vue$/,use:'vue-loader'}
+      {test:/\.vue$/,use:'vue-loader'},
     ]
   },
   mode: 'development',
@@ -26,6 +26,7 @@ module.exports = {
     port:3000,
     host:true,
     open:true,
-    host:'localhost'
+    host:'localhost',
+    contentBase: path.join(__dirname, 'dist2'),
   }
 }

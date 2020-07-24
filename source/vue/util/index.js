@@ -61,7 +61,8 @@ function mergeAssets(parentVal,childVal) {
 // 组件的合并策略
 strats['components'] = mergeAssets
 
-export function mergeOptions(parent, child) {
+export function mergeOptions(parent, child, type) {
+  console.log(111,parent, child, type)
   let options = {}
   for(let key in parent) {
     mergeField(key)
@@ -89,7 +90,7 @@ export function mergeOptions(parent, child) {
 
 
 export function isReservedTag(tagName) {
-  let str = 'div,p,span,input,button'
+  let str = 'div,p,span,input,button,a'
   let obj = {}
   str.split(',').forEach(tag => {
     obj[tag]= true

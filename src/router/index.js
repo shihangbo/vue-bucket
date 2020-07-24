@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import VueRouter from '../../source/vue-router/index'
 
 import Home from '../views/home.vue'
 import About from '../views/about.vue'

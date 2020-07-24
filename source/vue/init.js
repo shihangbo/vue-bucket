@@ -9,7 +9,7 @@ export function initMixin(Vue) {
     const vm = this
 
     // 实例继承Vue的options属性
-    vm.$options = mergeOptions(vm.constructor.options, options)
+    vm.$options = mergeOptions(vm.constructor.options, options, 222)
     console.log('Vue.mixin合并策略(vm实例属性合并完成): ',  vm.$options)
     
     callHook(vm, 'beforeCreate')

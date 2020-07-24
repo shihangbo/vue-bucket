@@ -21,12 +21,12 @@ export function initGlobelAPI(Vue) {
   initUse(Vue)
 
   // 测试 Vue.mixin
-  Vue.mixin({
-    a:1,
-    beforeCreate() {
-      console.log('生命周期: beforeCreate Vue定义的')
-    },
-  })
+  // Vue.mixin({
+  //   a:1,
+  //   beforeCreate() {
+  //     console.log('生命周期: beforeCreate Vue定义的')
+  //   },
+  // })
   // Vue.mixin({
   //   b:2,
   //   beforeCreate() {
