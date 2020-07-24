@@ -1,4 +1,4 @@
-let Vue = null
+import install from './install'
 
 class VueRouter {
   constructor(routes) {
@@ -6,18 +6,6 @@ class VueRouter {
   }
 }
 
-VueRouter.install = function(_Vue) {
-  Vue = _Vue
-  Vue.component('router-link', {
-    render(h) {
-      return h('a',{},[this.$slots.default])
-    }
-  })
-  Vue.component('router-view', {
-    render(h) {
-      return h('div',{},[this.$slots.default])
-    }
-  })
-}
+VueRouter.install = install
 
 export default VueRouter
