@@ -9,10 +9,10 @@ import B from '../views/About/b.vue'
 const routes = [
   {
     path: '/',
-    components: Home
+    component: Home
   }, {
     path: '/about',
-    components: About,
+    component: About,
     children: [
       {path: 'a',component: A},
       {path: 'b',component: B},
@@ -22,6 +22,21 @@ const routes = [
 
 // use方法会调用 VueRouter的install方法，目的：注册全局组件 router-link router-view
 Vue.use(VueRouter)
-export default new VueRouter({
+
+let router = new VueRouter({
+  mode: 'hash',
   routes
 })
+router.beforeEach((to,from,next)=> {
+  setTimeout(function(){
+    console.log(1111)
+    next()
+  },1000)
+})
+router.beforeEach((to,from,next)=> {
+  setTimeout(function(){
+    console.log(1111)
+    next()
+  },1000)
+})
+export default router
