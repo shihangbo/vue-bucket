@@ -7,5 +7,10 @@ new Vue({
   name: 'root',
   el: '#app',
   render: h=>h(App),
-  router
+  router,
+  data() {
+    return {
+      a:1
+    }
+  }
 })
