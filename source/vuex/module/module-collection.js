@@ -1,4 +1,5 @@
 import { forEach } from "../util"
+import Module from "./module"
 
 class ModuleCollection{
   constructor(options) {
@@ -6,19 +7,15 @@ class ModuleCollection{
     this.register([],options)
   }
   register(path,rootModule) {
-    let newModule = {
-      _row:rootModule,
-      _children:{},
-      state:rootModule.state
-    }
+    let newModule = new Module(rootModule)
     if(path.length == 0) {
       this.root = newModule
     }else {
       // 找父节点的过程
       let parent = path.slice(0,-1).reduce((memo,current)=>{
-        return memo._children[current]
-      })
-      parent._children[path[path.length-1]] = newModule
+        return memo.getChild(current)
+      },this.root)
+      parent.addChild(path[path.length-1],newModule)
     }
     // 注册子模块
     if(rootModule.modules) {
