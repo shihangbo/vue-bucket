@@ -29,13 +29,7 @@ let router = new VueRouter({
 })
 router.beforeEach((to,from,next)=> {
   setTimeout(function(){
-    console.log(1111)
-    next()
-  },1000)
-})
-router.beforeEach((to,from,next)=> {
-  setTimeout(function(){
-    console.log(1111)
+    console.log('beforeEach 11111')
     next()
   },1000)
 })
