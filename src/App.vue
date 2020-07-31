@@ -8,8 +8,8 @@
 
 
     <div>Vuex</div>
-    <div>我的年龄1 {{$store.state.age}}</div>
-    <div>我的年龄2 {{$store.getters.getAge}}</div>
+    <div>aa我的年龄: {{$store.state.age}}</div>
+    <div>bb我的年龄: {{$store.getters.getAge}}</div>
     <button @click="syncAdd">同步更新状态 +1 </button>
     <button @click="asyncAdd">异步更新状态 +2 </button>
   </div>
