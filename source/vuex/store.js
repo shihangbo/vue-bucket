@@ -1,5 +1,6 @@
 import applyMixin from './mixin'
 import {forEach} from './util'
+import ModuleCollection from './module/module-collection'
 let Vue;
 
 // 最终用户拿到的是这个类的实例
@@ -34,6 +35,9 @@ class Store {
     // console.log('vuex 发布订阅模式: mutations/actions 数据订阅完成')
 
     // 源码版
+    // -格式化参数，树型结构
+    this._modules = new ModuleCollection(options)
+    console.log('vuex 参数格式化成树型结构完成',this._modules)
 
   }
   commit(type,payload) {
@@ -43,9 +47,9 @@ class Store {
     this._actions[type](payload)
   }
   // 类的属性访问器，当用户去这个实例上取state属性是，会执行这个方法
-  get state() {
-    return this._vm._data.$$state
-  }
+  // get state() {
+  //   return this._vm._data.$$state
+  // }
 }
 
 const install = _Vue => {
