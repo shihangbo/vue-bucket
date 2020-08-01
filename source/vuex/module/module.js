@@ -6,6 +6,9 @@ class Module {
     this._children = {}
     this.state = rootModule.state
   }
+  get namespaced(){
+    return this._rawModule.namespaced
+  }
   getChild(key) {
     return this._children[key]
   }

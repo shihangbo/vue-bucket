@@ -3,7 +3,28 @@ import Vuex from '../../source/vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({ // 先进行 .运算符，然后再 new
+// 5.vuex 插件机制 - 实现持久化插件
+function persists(store) {
+  let id = 0
+  let local = localStorage.getItem('VUEX:STATE')
+  if(local) {
+    store.replaceState(JSON.parse(local))
+  }
+  store.subscribe((mutation,state)=>{
+    localStorage.setItem('VUEX:STATE',JSON.stringify(state))
+  })
+  if(id == 0){
+    console.log('vuex 5.插件机制，vuex持久化实现')
+  }
+  id++
+}
+
+const store = new Vuex.Store({ // 先进行 .运算符，然后再 new
+  plugins: [
+    persists
+  ],
+  strict: true,
+  namespaced: true,
   state:{
     age: 29,
     a: 1,
@@ -19,6 +40,9 @@ export default new Vuex.Store({ // 先进行 .运算符，然后再 new
     changeAge(state,payload) {
       console.log('更新root')
       state.age += payload
+    },
+    syncChangeAge() {
+      state.age += payload
     }
   },
   actions:{
@@ -26,10 +50,16 @@ export default new Vuex.Store({ // 先进行 .运算符，然后再 new
       setTimeout(()=>{
         commit.call(this,'changeAge', payload)
       },1000)
-    }
+    },
+    asyncChangeAge({commit},payload){
+      setTimeout(()=>{
+        commit.call(this,'changeAge', payload)
+      },1000)
+    },
   },
   modules:{
     b: {
+      namespaced: true,
       state: {
         age: 'b',
       },
@@ -41,6 +71,7 @@ export default new Vuex.Store({ // 先进行 .运算符，然后再 new
       },
     },
     c: {
+      namespaced: true,
       state: {
         age: 'c',
       },
@@ -52,6 +83,7 @@ export default new Vuex.Store({ // 先进行 .运算符，然后再 new
       },
       modules: {
         d: {
+          namespaced: true,
           state: {
             age: 'd',
           },
@@ -66,3 +98,12 @@ export default new Vuex.Store({ // 先进行 .运算符，然后再 new
     }
   }
 })
+
+// 动态注册模块
+store.registerModule(['b', 'e'], {
+  state: {
+    myAge: 100,
+  }
+})
+
+export default store
