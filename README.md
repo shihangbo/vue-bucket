@@ -25,6 +25,7 @@ vue family bucket
 
 ## vue-router
 #### 1.install方法
+
 #### 2.VueRouter类
 #### 3.全局组件
 #### 4.生命周期
@@ -32,6 +33,7 @@ vue family bucket
 
 ## vuex
 #### 1.install方法
+
 #### 2.Store类
 #### 3.todo...
 
