@@ -14,6 +14,9 @@ export function defineReactive(data, key, value) {
     get: function() {
       // 三、依赖收集 class Dep{} 数据发布者
       if (Dep.target) { // 对象依赖的收集
+        if (Dep.target.user) {
+          console.log('用户watcher收集', Dep.target)
+        }
         dep.depend()
         if (childOb) { // 数组依赖的收集
           childOb.dep.depend()

@@ -62,7 +62,6 @@ function mergeAssets(parentVal,childVal) {
 strats['components'] = mergeAssets
 
 export function mergeOptions(parent, child, type) {
-  console.log(111,parent, child, type)
   let options = {}
   for(let key in parent) {
     mergeField(key)

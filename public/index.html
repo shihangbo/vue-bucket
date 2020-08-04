@@ -8,6 +8,7 @@
   <body>
     <div id="app" style="color:red;">hello
       <p>my {{name}} is watson.</p>
+      <p>my age is {{age}}.</p>
       <my-component1></my-component1>
       <my-component2></my-component2>
     </div>
@@ -36,6 +37,12 @@
           'my-component2': {
             template: `<div>hello watson 222</div>`
           }
+        },
+        watch: {
+          age: [
+            {handler(){},sync:true},
+            {handler(){},sync:true}
+          ]
         }
         // beforeCreate() {
         //   console.log('生命周期: beforeCreate user', this.$el)
@@ -58,13 +65,13 @@
       })
 
       // vm._data.students.push({name:'hb',age:17})
-      console.log(9999,vm)
       vm.name[0].push(4)
       vm.name[0].push(5)
       vm.name[0].push(6)
-      vm.$nextTick(function() {
-        console.log(vm.name)
-      })
+      vm.age = 19
+      // vm.$nextTick(function() {
+      //   console.log(vm.name)
+      // })
     </script>
   </body>
 </html>

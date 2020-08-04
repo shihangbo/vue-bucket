@@ -31,7 +31,6 @@ function createComponent(vnode) {
 function createElm(vnode) {
   let {tag,data,key,children,text} = vnode
   if (typeof tag === 'string') { //创建真实标签
-    console.log(888,tag,vnode)
     // 组件渲染
     if (createComponent(vnode)) {
       // 返回真实dom

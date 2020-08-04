@@ -2,6 +2,7 @@ import { initMixin } from './init'
 import {renderMixin} from './render'
 import {lifecycleMixin} from './lifecycle'
 import {initGlobelAPI} from './initGlobelAPI/index'
+import {stateMixin} from './state'
 
 // vue核心代码
 function Vue(options) {
@@ -12,6 +13,8 @@ function Vue(options) {
 initMixin(Vue)
 renderMixin(Vue)
 lifecycleMixin(Vue)
+
+stateMixin(Vue) // 拓展 vm.$watch方法
 
 
 //初始化全局api，Vue到静态方法
@@ -71,3 +74,14 @@ export default Vue
     // 5.总结：组件在使用时会调用Vue.extend方法，创建一个构造函数
             //实例化自组件时，会将当前选项和用户定义选项合并，mergeOptions
             //通过创建实例，内部会调用子类_init方法(子组件调用$mount方法)，创建子组件渲染watcher，将渲染后到结果放到对应到vm.#el上；
+// 九、关于watcher的知识
+    // 0.watch的原理是通过 Watcher实现的
+    // 1.watch的用法（watch对象和vm.$watch()是同一个实现）：
+          //1.函数用法 watson(newValue,oldValue){}; 
+          //2.1对象用法 watson:{handler(newValue,oldValue){},deep:true,sync:true}
+          //2.2对象用法 watson:{handler:'handler',deep:true,sync:true}; handler方法会去methods对象里面找
+          //3.数组对象用法 对象的叠加用数组包裹
+    // 2.实现
+          //1.vue实例上定义 $watch方法 创建用户watcher 用户watcher的标识 options.user 为true
+          //2.对watcher实例上的getter封装成取值函数，从而现实对于用户watcher的收集
+          //3.对应watcher值发生变化的时候，会调用run方法，如果是用户watcher，执行用户定义的cb函数
