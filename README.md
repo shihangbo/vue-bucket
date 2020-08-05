@@ -23,17 +23,17 @@ vue family bucket
 #### 8.组件系统 - 组件的渲染
 #### 9.todo...
 
-## vue-router
-#### 1.install方法
+## vue3
+#### 1.项目管理
+#### 2.reactivity包 - reactive/computed/effect/ref
 
+## vue-router 3+4
+#### 1.install方法
 #### 2.VueRouter类
-#### 3.全局组件
-#### 4.生命周期
-#### 5.todo...
+#### 3.todo...
 
-## vuex
+## vuex 1+7
 #### 1.install方法
-
 #### 2.Store类
 #### 3.todo...
 

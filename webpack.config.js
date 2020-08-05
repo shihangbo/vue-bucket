@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
-  entry: './src/main.js',
+  entry: process.env.NODE_ENV === 'vue3' ? './src/vue3/main.js' : './src/main.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist2')
