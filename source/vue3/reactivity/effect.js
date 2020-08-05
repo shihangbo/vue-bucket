@@ -3,7 +3,7 @@ import { TriggerOpTypes } from "./operation"
 export function effect(fn,options={}) {
   //创建响应式effect
   const effect = createReactiveEffect(fn,options)
-  if(!options.lazy){
+  if(!options.lazy){ //默认执行
     effect()
   }
   return effect
@@ -47,11 +47,12 @@ export function track(target,type,key){ // a = [effect,effect] b = [effect]
   if(!dep){
     depsMap.set(key,(dep=new Set))
   }
-  // console.log(111,key,dep)
+  // console.log(111,key,dep,targetMap)
   if(!dep.has(activeEffect)){
     dep.add(activeEffect)
     activeEffect.deps.push(dep) // 让这个effect 记录 dep属性
   }
+
 }
 //触发执行
 export function trigger(target,type,key,value){
@@ -59,14 +60,40 @@ export function trigger(target,type,key,value){
   if(!depsMap){
     return
   }
-  const run = effects => {
-    if(effects) {effects.forEach(effect => effect())}
+  // const run = effects => {
+  //   if(effects) {effects.forEach(effect => effect())}
+  // }
+  // 计算属性优先于effect执行
+  const effects = new Set()
+  const computedRunners = new Set()
+  const add = (effectsToAdd)=>{
+    if(effectsToAdd){
+      effectsToAdd.forEach(effect=>{
+        if(effect.options.computed){
+          computedRunners.add(effect)
+        }else{
+          effects.add(effect)
+        }
+      })
+    }
   }
   if(key!==null){
-    run(depsMap.get(key))
+    // run(depsMap.get(key)) // 初级版本
+    add(depsMap.get(key)) // 计算属性版本
   }
   // 数组的特殊处理 对数组新增属性 会触发length对应依赖，触发在取值的时候对length的收集依赖(数组调用.length,JOSN.stringify等字符串化数组的操作都会收集length对应的依赖)
   if(type===TriggerOpTypes.ADD){
-    run(depsMap.get(Array.isArray(target)?'length':''))
+    // run(depsMap.get(Array.isArray(target)?'length':''))
+    add(depsMap.get(Array.isArray(target)?'length':''))
   }
+
+  const run = effect=>{
+    if(effect.options.scheduler){
+      effect.options.scheduler()
+    }else{
+      effect()
+    }
+  }
+  computedRunners.forEach(run)
+  effects.forEach(run)
 }
