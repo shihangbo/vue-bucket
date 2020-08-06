@@ -21,6 +21,8 @@
         el: '#app',
         data() {
           return {
+            first: 'first',
+            second: 'second',
             name: [[1111],2,3],
             age: 17,
             address: {
@@ -38,10 +40,15 @@
             template: `<div>hello watson 222</div>`
           }
         },
+        computed:{
+          fullName(){
+            return this.first + this.second
+          }
+        },
         watch: {
           age: [
-            {handler(){},sync:true},
-            {handler(){},sync:true}
+            {handler(){console.log(1)},sync:true},
+            {handler(){console.log(2)},sync:true}
           ]
         }
         // beforeCreate() {
@@ -65,13 +72,19 @@
       })
 
       // vm._data.students.push({name:'hb',age:17})
-      vm.name[0].push(4)
-      vm.name[0].push(5)
-      vm.name[0].push(6)
-      vm.age = 19
+      // 操作数组
+      // vm.name[0].push(4)
+      // vm.name[0].push(5)
+      // vm.name[0].push(6)
+      // vm.age = 19
       // vm.$nextTick(function() {
       //   console.log(vm.name)
       // })
+      // 计算属性
+      console.log(vm.fullName,vm)
+      vm.first = 'watson'
+      console.log(vm.fullName,vm)
+
     </script>
   </body>
 </html>

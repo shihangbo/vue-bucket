@@ -12,6 +12,9 @@ vue family bucket
 编译命令: npm run build-webpack
 ```
 
+3.vue3
+启动命令: npm run dev:vue3
+
 ## vue
 #### 1.MVVM 数据劫持
 #### 2.compiler 模版编译

@@ -9,6 +9,8 @@ class Watcher{
     this.sync = options.sync // 标识同步watcher
     this.user = options.user // 标识wather的类型 用户watcher
     this.id = id++
+    this.lazy = options.lazy
+    this.dirty = options.lazy
 
     if(typeof exprOrFn === 'function') {
       this.getter = exprOrFn
@@ -26,7 +28,7 @@ class Watcher{
     
     this.deps = []
     this.depsId = new Set()
-    this.value = this.get()
+    this.value = this.lazy?undefined:this.get()
   }
 
   get() {
@@ -49,11 +51,16 @@ class Watcher{
   update() {
     if(this.sync) { // 同步watcher实现
       this.run()
+    } else if(this.lazy){
+      this.dirty = true
     } else {
       queueWatcher(this)
     }
   }
-
+  evaluate(){
+    this.value = this.get()
+    this.dirty = false
+  }
   run() {
     let oldValue = this.value
     let newValue = this.get()

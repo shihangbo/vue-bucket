@@ -39,7 +39,7 @@ export default Vue
 // 三、初始化渲染流程:
     // 初始化渲染：将template -> ast语法树 -> 生成render方法 -> 生成虚拟dom -> 真实dom，渲染页面
     // 更新视图：  重新生成虚拟dom -> dom diff -> 更新真实dom
-    // 1.new Watcher()渲染watcher
+    // 1.new Watcher() - 渲染watcher
     // 2.vm._render 执行render方法 生成vnode _c _v _s
     // 3.vm._update 执行patch方法 通过vnode 创建真实dom【替换】真实的$el，更新视图
         // 3.1 判断更新还是渲染 oldVnode是否存在nodeType属性
@@ -74,8 +74,8 @@ export default Vue
     // 5.总结：组件在使用时会调用Vue.extend方法，创建一个构造函数
             //实例化自组件时，会将当前选项和用户定义选项合并，mergeOptions
             //通过创建实例，内部会调用子类_init方法(子组件调用$mount方法)，创建子组件渲染watcher，将渲染后到结果放到对应到vm.#el上；
-// 九、关于watcher的知识
-    // 0.watch的原理是通过 Watcher实现的
+// 九、watcher的实现
+    // 0.watch的原理是通过 Watcher实现的 - 用户watcher
     // 1.watch的用法（watch对象和vm.$watch()是同一个实现）：
           //1.函数用法 watson(newValue,oldValue){}; 
           //2.1对象用法 watson:{handler(newValue,oldValue){},deep:true,sync:true}
@@ -85,3 +85,10 @@ export default Vue
           //1.vue实例上定义 $watch方法 创建用户watcher 用户watcher的标识 options.user 为true
           //2.对watcher实例上的getter封装成取值函数，从而现实对于用户watcher的收集
           //3.对应watcher值发生变化的时候，会调用run方法，如果是用户watcher，执行用户定义的cb函数
+// 十、计算属性的实现
+    // 0.computed的原理是通过 Watcher来实现的 - 计算属性watcher
+    // 1.computed和watcher区别
+        //1.watch默认会对变量取值，computed默认不会只有当取值当时候才会执行
+        //2.computed有缓存，所依赖当属性没有变化的时候，不会重复取值
+        //3.computed定义的属性，可以在模版中{{computed}}直接使用
+    // 2.通过watcher来实现的
