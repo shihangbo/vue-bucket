@@ -28,9 +28,10 @@ let router = new VueRouter({
   routes
 })
 router.beforeEach((to,from,next)=> {
-  setTimeout(function(){
-    console.log('beforeEach 11111')
-    next()
-  },1000)
+  // setTimeout(function(){
+  //   console.log('beforeEach 11111')
+  //   next()
+  // },1000)
+  next()
 })
 export default router

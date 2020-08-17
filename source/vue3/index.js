@@ -17,5 +17,5 @@
       // computed方法返回带有value属性的对象，
       // 定义value属性时，get() 创建一个computed为true且lazy为true的effect，age = [effect] 生成依赖，dirty为false
       // 当用户获取value属性时，dirty为false，直接原始value，
-      // 当computed依赖的属性age发生变化，再次调用 scheduler的dirty值为false，重新age执行对应的effect，获取最新值
+      // 当computed依赖的属性age发生变化，再次调用 scheduler的dirty值为true，重新age执行对应的effect，获取最新值
 // 5.

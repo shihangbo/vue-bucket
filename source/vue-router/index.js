@@ -3,6 +3,9 @@ import {createMatcher} from './create-matcher'
 import HashHistory from './history/hashHistory'
 import BrowserHistory from './history/browserHistory'
 
+// 3+4
+// 注册全局组件，定义全局方法，定义routerRoot属性
+// 创建匹配器，创建历史管理，实现路由跳转，渲染
 class VueRouter {
   constructor(options) {
     let {routes = []} = options
