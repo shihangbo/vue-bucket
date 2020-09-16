@@ -92,3 +92,8 @@ export default Vue
         //2.computed有缓存，所依赖当属性没有变化的时候，不会重复取值
         //3.computed定义的属性，可以在模版中{{computed}}直接使用
     // 2.通过watcher来实现的
+// 十一、v-for、v-model、v-if的实现原理
+    // 0.v-for :
+    // 1.v-if  :
+    // 2.原生标签中的 v-model :
+    // 3.组件标签中的 v-model :
