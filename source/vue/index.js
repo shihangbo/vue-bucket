@@ -97,3 +97,4 @@ export default Vue
     // 1.v-if  :
     // 2.原生标签中的 v-model :
     // 3.组件标签中的 v-model :
+// 十二、v-for 和 v-if 的优先级
